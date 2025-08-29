@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Language Info Page</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      background-color: rgb(253, 196, 255);
+    }
+
+    /* Navbar */
+    .navbar {
+      background-color: #333;
+      color: white;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+    }
+
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+
+    /* Middle Section */
+    .main {
+      flex: 1;
+      display: flex;
+    }
+
+    .sidebar {
+      width: 25%;
+      background: #be6dd2;
+      padding: 20px;
+      border-right: 1px solid #ccc;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar li {
+      margin: 10px 0;
+      cursor: pointer;
+      padding: 8px;
+      transition: background 0.3s;
+      border-radius: 4px;
+    }
+
+    .sidebar li:hover {
+      background: #ddd;
+    }
+
+    .sidebar li.active {
+      background: #333;
+      color: white;
+      font-weight: bold;
+    }
+
+    .content {
+      flex: 1;
+      padding: 20px;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #333;
+      color: white;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Top Section Navbar -->
+  <div class="navbar">
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Services</a>
+    <a href="#">Contact</a>
+  </div>
+
+  <!-- Middle Section -->
+  <div class="main">
+    <div class="sidebar">
+      <h3>Languages</h3>
+      <ul id="languageList">
+        <li data-lang="Java">Java</li>
+        <li data-lang="Python">Python</li>
+        <li data-lang="C++">C++</li>
+        <li data-lang="JavaScript">JavaScript</li>
+        <li data-lang="Go">Go</li>
+      </ul>
+    </div>
+    <div class="content" id="content">
+      <h2>Language Details</h2>
+      <p>Select a language from the list to see details here.</p>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>Made By Kriti &hearts;</p>
+  </div>
+
+  <script>
+    const details = {
+      "Java": "<h2>Java</h2><p>Java is a high-level, class-based, object-oriented programming language widely used in enterprise, Android, and backend systems.</p>",
+      "Python": "<h2>Python</h2><p>Python is an interpreted, high-level, general-purpose language popular in data science, web development, AI, and automation.</p>",
+      "C++": "<h2>C++</h2><p>C++ is a powerful, high-performance language often used in system programming, game development, and performance-critical applications.</p>",
+      "JavaScript": "<h2>JavaScript</h2><p>JavaScript powers interactivity in web pages and is widely used with frameworks like React, Angular, and Node.js.</p>",
+      "Go": "<h2>Go</h2><p>Go (Golang) is an open-source language developed at Google, known for simplicity, concurrency, and efficiency.</p>"
+    };
+
+    const content = document.getElementById("content");
+    const langItems = document.querySelectorAll("#languageList li");
+
+    langItems.forEach(item => {
+      item.addEventListener("click", () => {
+        // Remove active class from all
+        langItems.forEach(li => li.classList.remove("active"));
+        // Add active class to clicked
+        item.classList.add("active");
+        // Show details
+        const lang = item.getAttribute("data-lang");
+        content.innerHTML = details[lang] || "<h2>Details</h2><p>No information available.</p>";
+      });
+    });
+  </script>
+</body>
+</html>
